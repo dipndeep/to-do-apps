@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import Button from '../components/Button';
 import Card from '../components/Card';
+import CustomSelect from '../components/CustomSelect';
 import TaskModal from '../components/TaskModal';
 import { mockDb } from '../utils/mockDb';
 
@@ -172,11 +173,11 @@ export default function DashboardView({
   const getPriorityBadgeStyle = (priority) => {
     switch (priority) {
       case 'TINGGI':
-        return 'bg-punch-red-400 text-ink-black-900';
+        return 'bg-punch-red-400 text-[#011c32]';
       case 'SEDANG':
-        return 'bg-amber-glow-400 text-ink-black-900';
+        return 'bg-amber-glow-400 text-[#011c32]';
       case 'RENDAH':
-        return 'bg-light-sea-green-400 text-ink-black-900';
+        return 'bg-light-sea-green-400 text-[#011c32]';
       default:
         return 'bg-ink-black-100 text-ink-black-900';
     }
@@ -196,23 +197,25 @@ export default function DashboardView({
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-[#f7f9fa]">
+    <div className="min-h-screen flex flex-col md:flex-row bg-body-bg">
       {/* Sidebar Navigasi */}
       <aside 
         className={`w-full ${
           isMinimized ? 'md:w-20 md:p-3' : 'md:w-64 md:p-6'
-        } bg-ink-black-900 text-white flex flex-col justify-between border-b-3 md:border-b-0 md:border-r-3 border-ink-black-900 shrink-0 p-6 select-none md:sticky md:top-0 md:h-screen transition-all duration-300 z-30`}
+        } bg-ink-black-950 text-white flex flex-col justify-between border-b-3 md:border-b-0 md:border-r-3 border-ink-black-900 shrink-0 p-6 select-none md:sticky md:top-0 md:h-screen transition-all duration-300 z-30`}
       >
         <div>
           {/* Brand Header */}
           {isMinimized ? (
             <div className="flex flex-col items-center gap-4 pb-6 border-b-2 border-ink-black-800 mb-8">
-              <div className="w-10 h-10 bg-light-sea-green-400 rounded-[4px] border-2 border-ink-black-900 flex items-center justify-center text-ink-black-900 font-black text-xl shadow-[2px_2px_0px_0px_#011c32]">
-                TD
-              </div>
+              <img 
+                src="/dipintodo-logo.png" 
+                alt="Logo" 
+                className="w-10 h-10 object-contain rounded-[4px] border-2 border-ink-black-800 bg-ink-black-950 p-1 invert" 
+              />
               <button
                 onClick={() => setIsMinimized(false)}
-                className="p-1.5 bg-amber-glow-400 border-2 border-ink-black-900 rounded-[4px] text-ink-black-900 hover:bg-amber-glow-300 shadow-[2px_2px_0px_0px_#011c32] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer"
+                className="p-1.5 bg-amber-glow-400 border-2 border-ink-black-900 rounded-[4px] text-brand-dark hover:bg-amber-glow-300 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer"
                 title="Expand Sidebar"
               >
                 <ChevronRight className="w-4 h-4 stroke-3" />
@@ -221,21 +224,23 @@ export default function DashboardView({
           ) : (
             <div className="flex items-center justify-between gap-2 pb-6 border-b-2 border-ink-black-800 mb-8">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 bg-light-sea-green-400 rounded-[4px] border-2 border-ink-black-900 flex items-center justify-center text-ink-black-900 font-black text-xl shadow-[2px_2px_0px_0px_#011c32]">
-                  TD
-                </div>
+                <img 
+                  src="/dipintodo-logo.png" 
+                  alt="Logo" 
+                  className="w-10 h-10 object-contain rounded-[4px] border-2 border-ink-black-800 bg-ink-black-950 p-1 invert" 
+                />
                 <div>
                   <h2 className="text-lg font-black tracking-wide leading-none uppercase m-0 text-white">
-                    Task Manager
+                    DipInToDo
                   </h2>
                   <span className="text-[10px] uppercase font-bold text-light-sea-green-300 tracking-wider">
-                    Full-Stack Ready
+                    Productivity App
                   </span>
                 </div>
               </div>
               <button
                 onClick={() => setIsMinimized(true)}
-                className="hidden md:flex p-1.5 bg-amber-glow-400 border-2 border-ink-black-900 rounded-[4px] text-ink-black-900 hover:bg-amber-glow-300 shadow-[2px_2px_0px_0px_#011c32] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer"
+                className="hidden md:flex p-1.5 bg-amber-glow-400 border-2 border-ink-black-900 rounded-[4px] text-brand-dark hover:bg-amber-glow-300 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer"
                 title="Minimize Sidebar"
               >
                 <ChevronLeft className="w-4 h-4 stroke-3" />
@@ -249,14 +254,14 @@ export default function DashboardView({
               className="bg-ink-black-950 p-2 border-2 border-ink-black-800 rounded-[4px] mb-8 flex justify-center cursor-help"
               title={`${user.name} (${user.email})`}
             >
-              <div className="w-10 h-10 bg-amber-glow-300 border-2 border-white rounded-full flex items-center justify-center text-ink-black-900 font-bold shadow-[2px_2px_0px_0px_#011c32]">
+              <div className="w-10 h-10 bg-amber-glow-300 border-2 border-white rounded-full flex items-center justify-center text-brand-dark font-bold shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]">
                 <User className="w-5 h-5" />
               </div>
             </div>
           ) : (
             <div className="bg-ink-black-950 p-4 border-2 border-ink-black-800 rounded-[4px] mb-8">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-amber-glow-300 border-2 border-white rounded-full flex items-center justify-center text-ink-black-900 font-bold shadow-[2px_2px_0px_0px_#011c32]">
+                <div className="w-10 h-10 bg-amber-glow-300 border-2 border-white rounded-full flex items-center justify-center text-brand-dark font-bold shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]">
                   <User className="w-5 h-5" />
                 </div>
                 <div className="overflow-hidden">
@@ -287,7 +292,7 @@ export default function DashboardView({
                   onClick={() => setActiveTab(item.id)}
                   className={`p-2.5 rounded-[4px] border-2 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)] border-ink-black-900 active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer ${
                     activeTab === item.id 
-                      ? `${item.activeBg} text-ink-black-900` 
+                      ? `${item.activeBg} text-brand-dark` 
                       : 'bg-white text-ink-black-700 hover:bg-ink-black-50'
                   }`}
                   title={item.label}
@@ -302,12 +307,12 @@ export default function DashboardView({
                 Menu Utama
               </div>
               {[
-                { id: 'tasks', label: 'Daftar Tugas', icon: <ClipboardList className="w-4 h-4" />, activeBg: 'bg-light-sea-green-600 text-ink-black-900 border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
-                { id: 'insights', label: 'Statistik', icon: <TrendingUp className="w-4 h-4" />, activeBg: 'bg-amber-glow-500 text-ink-black-900 border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
-                { id: 'categories', label: 'Kategori', icon: <Tag className="w-4 h-4" />, activeBg: 'bg-porcelain-500 text-ink-black-900 border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
-                { id: 'pomodoro', label: 'Fokus Pomodoro', icon: <Timer className="w-4 h-4" />, activeBg: 'bg-light-sea-green-600 text-ink-black-900 border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
-                { id: 'archive', label: 'Arsip Tugas', icon: <Archive className="w-4 h-4" />, activeBg: 'bg-porcelain-500 text-ink-black-900 border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
-                { id: 'settings', label: 'Pengaturan', icon: <Settings className="w-4 h-4" />, activeBg: 'bg-amber-glow-500 text-ink-black-900 border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
+                { id: 'tasks', label: 'Daftar Tugas', icon: <ClipboardList className="w-4 h-4" />, activeBg: 'bg-light-sea-green-600 text-[#011c32] border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
+                { id: 'insights', label: 'Statistik', icon: <TrendingUp className="w-4 h-4" />, activeBg: 'bg-amber-glow-500 text-[#011c32] border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
+                { id: 'categories', label: 'Kategori', icon: <Tag className="w-4 h-4" />, activeBg: 'bg-porcelain-500 text-[#011c32] border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
+                { id: 'pomodoro', label: 'Fokus Pomodoro', icon: <Timer className="w-4 h-4" />, activeBg: 'bg-light-sea-green-600 text-[#011c32] border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
+                { id: 'archive', label: 'Arsip Tugas', icon: <Archive className="w-4 h-4" />, activeBg: 'bg-porcelain-500 text-[#011c32] border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
+                { id: 'settings', label: 'Pengaturan', icon: <Settings className="w-4 h-4" />, activeBg: 'bg-amber-glow-500 text-[#011c32] border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]' },
               ].map((item) => (
                 <button
                   key={item.id}
@@ -330,7 +335,7 @@ export default function DashboardView({
           <div className="pt-6 border-t-2 border-ink-black-800 mt-8 flex justify-center">
             <button
               onClick={onLogout}
-              className="p-2.5 bg-punch-red-500 hover:bg-punch-red-400 border-2 border-ink-black-900 rounded-[4px] text-white shadow-[2px_2px_0px_0px_#011c32] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer"
+              className="p-2.5 bg-punch-red-500 hover:bg-punch-red-400 border-2 border-ink-black-900 rounded-[4px] text-white shadow-[2px_2px_0px_0px_var(--color-ink-black-900)] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer"
               title="Keluar Akun"
             >
               <LogOut className="w-5 h-5" />
@@ -382,7 +387,7 @@ export default function DashboardView({
               {/* Stats Card 1: Total */}
               <Card 
                 bg="bg-light-sea-green-100" 
-                className="border-[3px] border-ink-black-900 shadow-[4px_4px_0px_0px_#011c32] flex items-center justify-between relative overflow-hidden"
+                className="border-[3px] border-ink-black-900 shadow-[4px_4px_0px_0px_var(--color-ink-black-900)] flex items-center justify-between relative overflow-hidden"
               >
                 <div>
                   <p className="text-xs uppercase font-extrabold tracking-wider text-ink-black-800 mb-1">
@@ -392,15 +397,15 @@ export default function DashboardView({
                     {stats.total}
                   </h3>
                 </div>
-                <div className="p-3 bg-light-sea-green-300 border-2 border-ink-black-900 rounded-[4px] shadow-[2px_2px_0px_0px_#011c32]">
-                  <ClipboardList className="w-6 h-6 text-ink-black-900" />
+                <div className="p-3 bg-light-sea-green-300 border-2 border-ink-black-900 rounded-[4px] shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]">
+                  <ClipboardList className="w-6 h-6 text-brand-dark" />
                 </div>
               </Card>
 
               {/* Stats Card 2: Selesai */}
               <Card 
                 bg="bg-porcelain-100" 
-                className="border-[3px] border-ink-black-900 shadow-[4px_4px_0px_0px_#011c32] flex items-center justify-between relative overflow-hidden"
+                className="border-[3px] border-ink-black-900 shadow-[4px_4px_0px_0px_var(--color-ink-black-900)] flex items-center justify-between relative overflow-hidden"
               >
                 <div>
                   <p className="text-xs uppercase font-extrabold tracking-wider text-ink-black-800 mb-1">
@@ -410,15 +415,15 @@ export default function DashboardView({
                     {stats.selesai}
                   </h3>
                 </div>
-                <div className="p-3 bg-porcelain-300 border-2 border-ink-black-900 rounded-[4px] shadow-[2px_2px_0px_0px_#011c32]">
-                  <CheckCircle className="w-6 h-6 text-ink-black-900" />
+                <div className="p-3 bg-porcelain-300 border-2 border-ink-black-900 rounded-[4px] shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]">
+                  <CheckCircle className="w-6 h-6 text-brand-dark" />
                 </div>
               </Card>
 
               {/* Stats Card 3: Belum Selesai */}
               <Card 
                 bg="bg-punch-red-100" 
-                className="border-[3px] border-ink-black-900 shadow-[4px_4px_0px_0px_#011c32] flex items-center justify-between relative overflow-hidden"
+                className="border-[3px] border-ink-black-900 shadow-[4px_4px_0px_0px_var(--color-ink-black-900)] flex items-center justify-between relative overflow-hidden"
               >
                 <div>
                   <p className="text-xs uppercase font-extrabold tracking-wider text-ink-black-800 mb-1">
@@ -428,14 +433,14 @@ export default function DashboardView({
                     {stats.belumSelesai}
                   </h3>
                 </div>
-                <div className="p-3 bg-punch-red-300 border-2 border-ink-black-900 rounded-[4px] shadow-[2px_2px_0px_0px_#011c32]">
-                  <Clock className="w-6 h-6 text-ink-black-900" />
+                <div className="p-3 bg-punch-red-300 border-2 border-ink-black-900 rounded-[4px] shadow-[2px_2px_0px_0px_var(--color-ink-black-900)]">
+                  <Clock className="w-6 h-6 text-brand-dark" />
                 </div>
               </Card>
             </div>
 
             {/* Action Bar & Filters Section */}
-            <Card bg="bg-white" className="border-[3px] border-ink-black-900 shadow-[4px_4px_0px_0px_#011c32] p-5 mb-8">
+            <Card bg="bg-white" className="border-[3px] border-ink-black-900 shadow-[4px_4px_0px_0px_var(--color-ink-black-900)] p-5 mb-8">
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
                 {/* Left: Search input */}
                 <div className="flex-1 relative">
@@ -454,30 +459,34 @@ export default function DashboardView({
                   {/* Priority Filter */}
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-black uppercase tracking-wider text-ink-black-700">Prioritas:</span>
-                    <select
+                    <CustomSelect
                       value={priorityFilter}
-                      onChange={(e) => setPriorityFilter(e.target.value)}
-                      className="px-3 py-2 border-3 border-ink-black-900 rounded-[4px] font-bold text-xs bg-white focus:outline-none cursor-pointer uppercase"
-                    >
-                      <option value="ALL">Semua</option>
-                      <option value="TINGGI">Tinggi</option>
-                      <option value="SEDANG">Sedang</option>
-                      <option value="RENDAH">Rendah</option>
-                    </select>
+                      onChange={setPriorityFilter}
+                      options={[
+                        { value: 'ALL', label: 'Semua' },
+                        { value: 'TINGGI', label: 'Tinggi', colorHex: '#e71830' },
+                        { value: 'SEDANG', label: 'Sedang', colorHex: '#ff9500' },
+                        { value: 'RENDAH', label: 'Rendah', colorHex: '#55ff00' },
+                      ]}
+                      placeholder="Semua"
+                      className="w-32"
+                    />
                   </div>
 
                   {/* Sort By Filter */}
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-black uppercase tracking-wider text-ink-black-700">Urutan:</span>
-                    <select
+                    <CustomSelect
                       value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value)}
-                      className="px-3 py-2 border-3 border-ink-black-900 rounded-[4px] font-bold text-xs bg-white focus:outline-none cursor-pointer uppercase"
-                    >
-                      <option value="DUE_DATE_ASC">⏱️ Jatuh Tempo (Dekat)</option>
-                      <option value="DUE_DATE_DESC">⏱️ Jatuh Tempo (Jauh)</option>
-                      <option value="CREATED_DESC">📅 Tanggal Dibuat (Baru)</option>
-                    </select>
+                      onChange={setSortBy}
+                      options={[
+                        { value: 'DUE_DATE_ASC', label: 'Jatuh Tempo (Dekat)', icon: '⏱️' },
+                        { value: 'DUE_DATE_DESC', label: 'Jatuh Tempo (Jauh)', icon: '⏱️' },
+                        { value: 'CREATED_DESC', label: 'Tanggal Dibuat (Baru)', icon: '📅' },
+                      ]}
+                      placeholder="Urutan"
+                      className="w-48"
+                    />
                   </div>
 
                   {/* Grid/List View Toggles */}
@@ -522,8 +531,8 @@ export default function DashboardView({
                       onClick={() => setStatusFilter(status)}
                       className={`px-4 py-2 border-3 border-ink-black-900 rounded-[4px] font-bold text-xs uppercase tracking-wide transition-all cursor-pointer ${
                         isActive 
-                          ? `${activeBg} shadow-[2px_2px_0px_0px_#011c32] translate-y-0`
-                          : 'bg-white hover:bg-ink-black-50 shadow-[0px_0px_0px_0px_#011c32]'
+                          ? `${activeBg} shadow-[2px_2px_0px_0px_var(--color-ink-black-900)] translate-y-0`
+                          : 'bg-white hover:bg-ink-black-50 shadow-[0px_0px_0px_0px_var(--color-ink-black-900)]'
                       }`}
                     >
                       {label}
@@ -553,7 +562,7 @@ export default function DashboardView({
                       bg={cardBg}
                       hoverEffect={true}
                       className={`border-[3px] border-ink-black-900 ${
-                        isDone ? 'shadow-[4px_4px_0px_0px_#339900]' : 'shadow-[4px_4px_0px_0px_#011c32]'
+                        isDone ? 'shadow-[4px_4px_0px_0px_#339900]' : 'shadow-[4px_4px_0px_0px_var(--color-ink-black-900)]'
                       } flex flex-col justify-between h-full transition-all`}
                     >
                       {/* Task Card Header */}
@@ -561,7 +570,7 @@ export default function DashboardView({
                         <div className="flex flex-wrap gap-2 items-start justify-between mb-3">
                           <div className="flex flex-wrap gap-1.5 items-center">
                             {/* Priority Badge */}
-                            <span className={`px-2.5 py-1 text-[10px] font-black uppercase tracking-wider rounded-[4px] border-2 border-ink-black-900 shadow-[1.5px_1.5px_0px_0px_#011c32] ${getPriorityBadgeStyle(task.priority)}`}>
+                            <span className={`px-2.5 py-1 text-[10px] font-black uppercase tracking-wider rounded-[4px] border-2 border-ink-black-900 shadow-[1.5px_1.5px_0px_0px_var(--color-ink-black-900)] ${getPriorityBadgeStyle(task.priority)}`}>
                               {getPriorityLabel(task.priority)}
                             </span>
                             
@@ -571,7 +580,7 @@ export default function DashboardView({
                               if (!cat) return null;
                               return (
                                 <span 
-                                  className="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider rounded-[4px] border-2 border-ink-black-900 shadow-[1.5px_1.5px_0px_0px_#011c32] text-ink-black-900"
+                                  className="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider rounded-[4px] border-2 border-ink-black-900 shadow-[1.5px_1.5px_0px_0px_var(--color-ink-black-900)] text-brand-dark"
                                   style={{ backgroundColor: cat.color }}
                                 >
                                   {cat.name}
@@ -583,7 +592,7 @@ export default function DashboardView({
                           {/* Checkbox toggle status */}
                           <button
                             onClick={() => handleToggleStatus(task)}
-                            className={`w-6 h-6 border-2 border-ink-black-900 rounded-[4px] flex items-center justify-center cursor-pointer transition-colors shadow-[1.5px_1.5px_0px_0px_#011c32] ${
+                            className={`w-6 h-6 border-2 border-ink-black-900 rounded-[4px] flex items-center justify-center cursor-pointer transition-colors shadow-[1.5px_1.5px_0px_0px_var(--color-ink-black-900)] ${
                               isDone ? 'bg-porcelain-400' : 'bg-white hover:bg-porcelain-50'
                             }`}
                             title={isDone ? 'Tandai Belum Selesai' : 'Tandai Selesai'}
@@ -629,14 +638,14 @@ export default function DashboardView({
                               setEditingTask(task);
                               setIsModalOpen(true);
                             }}
-                            className="p-2 bg-white hover:bg-light-sea-green-100 border-2 border-ink-black-900 shadow-[2px_2px_0px_0px_#011c32] hover:shadow-[1.5px_1.5px_0px_0px_#011c32] transition-all cursor-pointer active:translate-x-[2px] active:translate-y-[2px] active:shadow-[0px_0px_0px_0px_#011c32]"
+                            className="p-2 bg-white hover:bg-light-sea-green-100 border-2 border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)] hover:shadow-[1.5px_1.5px_0px_0px_var(--color-ink-black-900)] transition-all cursor-pointer active:translate-x-[2px] active:translate-y-[2px] active:shadow-[0px_0px_0px_0px_var(--color-ink-black-900)]"
                             title="Edit Tugas"
                           >
                             <Edit className="w-3.5 h-3.5 text-ink-black-900" />
                           </button>
                           <button
                             onClick={() => handleDeleteTask(task.id)}
-                            className="p-2 bg-punch-red-400 hover:bg-punch-red-500 border-2 border-ink-black-900 shadow-[2px_2px_0px_0px_#011c32] hover:shadow-[1.5px_1.5px_0px_0px_#011c32] transition-all cursor-pointer active:translate-x-[2px] active:translate-y-[2px] active:shadow-[0px_0px_0px_0px_#011c32]"
+                            className="p-2 bg-punch-red-400 hover:bg-punch-red-500 border-2 border-ink-black-900 shadow-[2px_2px_0px_0px_var(--color-ink-black-900)] hover:shadow-[1.5px_1.5px_0px_0px_var(--color-ink-black-900)] transition-all cursor-pointer active:translate-x-[2px] active:translate-y-[2px] active:shadow-[0px_0px_0px_0px_var(--color-ink-black-900)]"
                             title="Hapus Tugas"
                           >
                             <Trash2 className="w-3.5 h-3.5 text-white" />

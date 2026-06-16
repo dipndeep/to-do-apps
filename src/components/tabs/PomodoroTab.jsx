@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { Play, Pause, RotateCcw, Timer, Sparkles } from 'lucide-react';
 import Card, { CardTitle, CardDescription } from '../Card';
 import Button from '../Button';
+import CustomSelect from '../CustomSelect';
 
 export default function PomodoroTab({ tasks, showToast }) {
   const [mode, setMode] = useState('FOCUS'); // 'FOCUS', 'BREAK'
@@ -80,7 +81,7 @@ export default function PomodoroTab({ tasks, showToast }) {
           onClick={() => handleSwitchMode('FOCUS')}
           className={`flex-1 py-3 text-sm font-black uppercase tracking-wider transition-colors cursor-pointer text-center ${
             mode === 'FOCUS' 
-              ? 'bg-amber-glow-400 text-ink-black-900' 
+              ? 'bg-amber-glow-400 text-brand-dark' 
               : 'bg-white hover:bg-ink-black-50 text-ink-black-700'
           }`}
         >
@@ -90,7 +91,7 @@ export default function PomodoroTab({ tasks, showToast }) {
           onClick={() => handleSwitchMode('BREAK')}
           className={`flex-1 py-3 text-sm font-black uppercase tracking-wider transition-colors cursor-pointer text-center border-l-3 border-ink-black-900 ${
             mode === 'BREAK' 
-              ? 'bg-light-sea-green-400 text-ink-black-900' 
+              ? 'bg-light-sea-green-400 text-brand-dark' 
               : 'bg-white hover:bg-ink-black-50 text-ink-black-700'
           }`}
         >
@@ -150,24 +151,30 @@ export default function PomodoroTab({ tasks, showToast }) {
         </CardDescription>
 
         <div className="space-y-4">
-          <select
-            value={selectedTaskId}
-            onChange={(e) => setSelectedTaskId(e.target.value)}
-            disabled={isRunning}
-            className="w-full px-3 py-2.5 rounded-[4px] border-[3px] border-ink-black-900 bg-white font-bold focus:outline-none uppercase cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed text-xs sm:text-sm"
-          >
-            <option value="">-- Pilih Tugas Fokus --</option>
-            {incompleteTasks.map((task) => (
-              <option key={task.id} value={task.id}>
-                {task.title}
-              </option>
-            ))}
-          </select>
+          {/* Custom Select for Task Binder */}
+          {isRunning ? (
+            <div className="w-full min-h-[42px] px-3.5 py-2.5 border-3 border-ink-black-900 rounded-[4px] bg-ink-black-50 text-ink-black-400 font-bold text-xs uppercase tracking-wider flex items-center justify-between gap-2.5 opacity-60">
+              <span className="truncate">{selectedTask ? selectedTask.title : '-- Pilih Tugas Fokus --'}</span>
+            </div>
+          ) : (
+            <CustomSelect
+              value={selectedTaskId}
+              onChange={setSelectedTaskId}
+              options={[
+                { value: '', label: '-- Pilih Tugas Fokus --' },
+                ...incompleteTasks.map((task) => ({
+                  value: task.id,
+                  label: task.title,
+                })),
+              ]}
+              placeholder="Pilih Tugas Fokus"
+            />
+          )}
 
           {selectedTask && (
             <div className="p-4 bg-white border-2 border-ink-black-900 rounded-[4px] shadow-[3px_3px_0px_0px_var(--color-ink-black-900)] flex items-start gap-3 animate-[slideIn_0.1s_ease-out]">
               <div className="p-1 bg-porcelain-300 border border-ink-black-900 rounded-[4px]">
-                <Sparkles className="w-4 h-4 text-ink-black-900" />
+                <Sparkles className="w-4 h-4 text-brand-dark" />
               </div>
               <div>
                 <p className="text-xs uppercase font-extrabold tracking-wider text-ink-black-600">Sedang Fokus Pada Pekerjaan:</p>

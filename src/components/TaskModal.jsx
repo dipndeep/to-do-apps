@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import Button from './Button';
 import Card, { CardTitle } from './Card';
+import CustomSelect from './CustomSelect';
+import CustomDatePicker from './CustomDatePicker';
 import { mockDb } from '../utils/mockDb';
 
 export default function TaskModal({
@@ -92,7 +94,7 @@ export default function TaskModal({
 
       {/* Modal Content */}
       <Card 
-        className="w-full max-w-lg relative z-50 animate-[slideIn_0.15s_ease-out] bg-white border-[3px] border-ink-black-900 shadow-[8px_8px_0px_0px_#011c32]"
+        className="w-full max-w-lg relative z-50 animate-[slideIn_0.15s_ease-out] bg-white border-[3px] border-ink-black-900 shadow-[8px_8px_0px_0px_var(--color-ink-black-900)]"
         p={0}
       >
         <div className="flex items-center justify-between border-b-3 border-ink-black-900 pb-4 mb-6">
@@ -150,15 +152,17 @@ export default function TaskModal({
               <label className="block text-sm font-bold uppercase tracking-wide mb-2">
                 Prioritas
               </label>
-              <select
+              <CustomSelect
                 value={priority}
-                onChange={(e) => setPriority(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-[4px] border-[3px] border-ink-black-900 bg-white font-bold focus:bg-light-sea-green-50 focus:outline-none transition-colors uppercase cursor-pointer text-xs"
-              >
-                <option value="RENDAH">🟢 Rendah</option>
-                <option value="SEDANG">🟡 Sedang</option>
-                <option value="TINGGI">🔴 Tinggi</option>
-              </select>
+                onChange={setPriority}
+                options={[
+                  { value: 'RENDAH', label: 'Rendah', colorHex: '#55ff00' },
+                  { value: 'SEDANG', label: 'Sedang', colorHex: '#ff9500' },
+                  { value: 'TINGGI', label: 'Tinggi', colorHex: '#e71830' },
+                ]}
+                placeholder="Pilih Prioritas"
+                position="top"
+              />
             </div>
 
             {/* Category select */}
@@ -166,18 +170,20 @@ export default function TaskModal({
               <label className="block text-sm font-bold uppercase tracking-wide mb-2">
                 Kategori
               </label>
-              <select
+              <CustomSelect
                 value={categoryId}
-                onChange={(e) => setCategoryId(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-[4px] border-[3px] border-ink-black-900 bg-white font-bold focus:bg-light-sea-green-50 focus:outline-none transition-colors uppercase cursor-pointer text-xs"
-              >
-                <option value="">Tanpa Kategori</option>
-                {categories.map((cat) => (
-                  <option key={cat.id} value={cat.id}>
-                    {cat.name}
-                  </option>
-                ))}
-              </select>
+                onChange={setCategoryId}
+                options={[
+                  { value: '', label: 'Tanpa Kategori' },
+                  ...categories.map((cat) => ({
+                    value: cat.id,
+                    label: cat.name,
+                    colorHex: cat.color,
+                  })),
+                ]}
+                placeholder="Pilih Kategori"
+                position="top"
+              />
             </div>
 
             {/* Due Date */}
@@ -185,11 +191,11 @@ export default function TaskModal({
               <label className="block text-sm font-bold uppercase tracking-wide mb-2">
                 Jatuh Tempo
               </label>
-              <input
-                type="date"
+              <CustomDatePicker
                 value={dueDate}
-                onChange={(e) => setDueDate(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-[4px] border-[3px] border-ink-black-900 bg-white font-bold focus:bg-light-sea-green-50 focus:outline-none transition-colors cursor-pointer text-xs"
+                onChange={setDueDate}
+                placeholder="Tenggat Waktu"
+                position="top"
               />
             </div>
           </div>

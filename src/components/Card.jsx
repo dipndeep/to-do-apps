@@ -2,12 +2,12 @@
 export default function Card({
   children,
   className = '',
-  bg = 'bg-white',
+  bg = 'bg-card-bg',
   hoverEffect = false,
   ...props
 }) {
   const hoverClass = hoverEffect 
-    ? 'hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_6px_0px_0px_#011c32] transition-all duration-200' 
+    ? 'hover:-translate-x-[2px] hover:-translate-y-[2px] hover:shadow-[6px_6px_0px_0px_var(--color-ink-black-900)] transition-all duration-200' 
     : '';
   
   return (

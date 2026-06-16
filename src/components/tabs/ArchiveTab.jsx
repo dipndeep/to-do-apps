@@ -60,7 +60,7 @@ export default function ArchiveTab({ tasks, onUpdateTasks, showToast }) {
               {/* Task Details */}
               <div className="flex-1 space-y-1">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="bg-porcelain-400 text-ink-black-900 text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-[4px] border border-ink-black-900">
+                  <span className="bg-porcelain-400 text-brand-dark text-[9px] font-black uppercase tracking-wider px-2 py-0.5 rounded-[4px] border border-ink-black-900">
                     Selesai
                   </span>
                   <span className="text-[10px] font-bold text-ink-black-600 flex items-center gap-1">
