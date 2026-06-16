@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+
+  /* Ink Black - Primary theme colors */
+  --color-ink-black-50: #e6f3fe;
+  --color-ink-black-100: #cde8fe;
+  --color-ink-black-200: #9cd1fc;
+  --color-ink-black-300: #6abafb;
+  --color-ink-black-400: #38a3fa;
+  --color-ink-black-500: #068cf9;
+  --color-ink-black-600: #0570c7;
+  --color-ink-black-700: #045495;
+  --color-ink-black-800: #033863;
+  --color-ink-black-900: #011c32;
+  --color-ink-black-950: #011423;
+
+  /* Porcelain - Success Aksen Hijau */
+  --color-porcelain-50: #eeffe5;
+  --color-porcelain-100: #ddffcc;
+  --color-porcelain-200: #bbff99;
+  --color-porcelain-300: #99ff66;
+  --color-porcelain-400: #77ff33;
+  --color-porcelain-500: #55ff00;
+  --color-porcelain-600: #44cc00;
+  --color-porcelain-700: #339900;
+  --color-porcelain-800: #226600;
+  --color-porcelain-900: #113300;
+  --color-porcelain-950: #0c2400;
+
+  /* Light Sea Green - Secondary Colors */
+  --color-light-sea-green-50: #eafaf9;
+  --color-light-sea-green-100: #d6f5f2;
+  --color-light-sea-green-200: #acece5;
+  --color-light-sea-green-300: #83e2d8;
+  --color-light-sea-green-400: #5ad8cc;
+  --color-light-sea-green-500: #30cfbf;
+  --color-light-sea-green-600: #27a599;
+  --color-light-sea-green-700: #1d7c72;
+  --color-light-sea-green-800: #13534c;
+  --color-light-sea-green-900: #0a2926;
+  --color-light-sea-green-950: #071d1b;
+
+  /* Punch Red - Danger / Overdue */
+  --color-punch-red-50: #fde8ea;
+  --color-punch-red-100: #fad1d6;
+  --color-punch-red-200: #f5a3ac;
+  --color-punch-red-300: #f07583;
+  --color-punch-red-400: #ec465a;
+  --color-punch-red-500: #e71830;
+  --color-punch-red-600: #b91327;
+  --color-punch-red-700: #8a0f1d;
+  --color-punch-red-800: #5c0a13;
+  --color-punch-red-900: #2e050a;
+  --color-punch-red-950: #200307;
+
+  /* Amber Glow - Warnings / Priority */
+  --color-amber-glow-50: #fff4e5;
+  --color-amber-glow-100: #ffeacc;
+  --color-amber-glow-200: #ffd599;
+  --color-amber-glow-300: #ffbf66;
+  --color-amber-glow-400: #ffaa33;
+  --color-amber-glow-500: #ff9500;
+  --color-amber-glow-600: #cc7700;
+  --color-amber-glow-700: #995900;
+  --color-amber-glow-800: #663c00;
+  --color-amber-glow-900: #331e00;
+  --color-amber-glow-950: #241500;
+}
+
+@layer base {
+  body {
+    background-color: #f7f9fa;
+    color: #011c32;
+    font-family: var(--font-sans);
+    background-image: radial-gradient(rgba(1, 28, 50, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Custom scrollbar matching Neobrutalism theme */
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border: 3px solid #011c32;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #30cfbf;
+    border: 3px solid #011c32;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #27a599;
+  }
+}
+
+/* Custom Neobrutalist classes */
+.neobrutal-border {
+  border: 3px solid #011c32;
+}
+
+.neobrutal-shadow {
+  box-shadow: 4px 4px 0px 0px #011c32;
+}
+
+.neobrutal-button-active {
+  transition: transform 0.05s ease-out, box-shadow 0.05s ease-out;
+}
+.neobrutal-button-active:active {
+  transform: translate(4px, 4px);
+  box-shadow: 0px 0px 0px 0px #011c32;
+}
