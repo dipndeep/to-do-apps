@@ -16,39 +16,23 @@ export default function SettingsTab({
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  // Define details of the selectable themes for preview rendering
+  // Define Light and Dark Mode themes
   const themes = [
     {
       id: 'default',
-      name: 'Original Ink',
+      name: '☀️ Mode Terang (Light)',
       bg: '#f7f9fa',
       border: '#011c32',
       primary: '#30cfbf',
       success: '#55ff00',
     },
     {
-      id: 'solarized',
-      name: 'Solarized Retro',
-      bg: '#fdf6e3',
-      border: '#073642',
-      primary: '#268bd2',
-      success: '#859900',
-    },
-    {
-      id: 'cyber',
-      name: 'Neon Cyberpunk',
+      id: 'dark',
+      name: '🌙 Mode Gelap (Dark)',
       bg: '#09080f',
-      border: '#ff007f',
-      primary: '#00f0ff',
-      success: '#39ff14',
-    },
-    {
-      id: 'grape',
-      name: 'Grape Soda',
-      bg: '#f5efff',
-      border: '#2b1055',
-      primary: '#9b51e0',
-      success: '#7fff00',
+      border: '#ffffff',
+      primary: '#30cfbf',
+      success: '#55ff00',
     },
   ];
 
@@ -88,7 +72,7 @@ export default function SettingsTab({
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 animate-[fadeIn_0.2s_ease-out] select-none">
       
       {/* Profile Form Card */}
-      <Card bg="bg-white" className="border-3 border-ink-black-900 shadow-[4px_4px_0px_0px_var(--color-ink-black-900)]">
+      <Card bg="bg-card-bg" className="border-3 border-ink-black-900 shadow-[4px_4px_0px_0px_var(--color-ink-black-900)]">
         <div className="flex items-center gap-2 mb-4">
           <User className="w-5 h-5 text-ink-black-900 stroke-[2.5]" />
           <CardTitle className="text-xl uppercase tracking-wide">Detail Profil Akun</CardTitle>
@@ -102,7 +86,7 @@ export default function SettingsTab({
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 bg-white font-semibold focus:outline-none transition-colors text-sm"
+              className="w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 bg-card-bg font-semibold focus:outline-none transition-colors text-sm"
             />
           </div>
 
@@ -112,7 +96,7 @@ export default function SettingsTab({
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 bg-white font-semibold focus:outline-none transition-colors text-sm"
+              className="w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 bg-card-bg font-semibold focus:outline-none transition-colors text-sm"
             />
           </div>
 
@@ -127,7 +111,7 @@ export default function SettingsTab({
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 bg-white font-semibold focus:outline-none transition-colors text-sm"
+                  className="w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 bg-card-bg font-semibold focus:outline-none transition-colors text-sm"
                 />
               </div>
               <div>
@@ -137,7 +121,7 @@ export default function SettingsTab({
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 bg-white font-semibold focus:outline-none transition-colors text-sm"
+                  className="w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 bg-card-bg font-semibold focus:outline-none transition-colors text-sm"
                 />
               </div>
             </div>
@@ -150,12 +134,12 @@ export default function SettingsTab({
       </Card>
 
       {/* Theme Settings Card */}
-      <Card bg="bg-white" className="border-3 border-ink-black-900 shadow-[4px_4px_0px_0px_var(--color-ink-black-900)]">
+      <Card bg="bg-card-bg" className="border-3 border-ink-black-900 shadow-[4px_4px_0px_0px_var(--color-ink-black-900)]">
         <div className="flex items-center gap-2 mb-4">
           <Palette className="w-5 h-5 text-ink-black-900 stroke-[2.5]" />
-          <CardTitle className="text-xl uppercase tracking-wide">Kustomisasi Tema Visual</CardTitle>
+          <CardTitle className="text-xl uppercase tracking-wide">Tema Tampilan Aplikasi</CardTitle>
         </div>
-        <CardDescription className="mb-6">Ubah estetika warna antarmuka aplikasi secara instan.</CardDescription>
+        <CardDescription className="mb-6">Pilih antara mode terang (Light Mode) atau mode gelap (Dark Mode).</CardDescription>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {themes.map((theme) => {
@@ -167,7 +151,7 @@ export default function SettingsTab({
                   onChangeTheme(theme.id);
                   showToast(`Tema warna diubah ke: ${theme.name}`, 'info');
                 }}
-                className={`neobrutal-border p-4 rounded-[4px] bg-white shadow-[3px_3px_0px_0px_var(--color-ink-black-900)] hover:shadow-[4px_4px_0px_0px_var(--color-ink-black-900)] hover:-translate-x-px hover:-translate-y-px cursor-pointer transition-all flex flex-col justify-between ${
+                className={`neobrutal-border p-4 rounded-[4px] bg-card-bg shadow-[3px_3px_0px_0px_var(--color-ink-black-900)] hover:shadow-[4px_4px_0px_0px_var(--color-ink-black-900)] hover:-translate-x-px hover:-translate-y-px cursor-pointer transition-all flex flex-col justify-between ${
                   isSelected ? 'ring-3 ring-ink-black-900 bg-ink-black-50' : 'opacity-85 hover:opacity-100'
                 }`}
               >
@@ -185,10 +169,10 @@ export default function SettingsTab({
                   
                   {/* Theme color circles preview layout */}
                   <div className="flex items-center gap-2 border-t-2 border-ink-black-100 pt-3">
-                    <span className="w-5 h-5 rounded-full border border-ink-black-900" style={{ backgroundColor: theme.bg }} title="Background" />
-                    <span className="w-5 h-5 rounded-full border border-ink-black-900" style={{ backgroundColor: theme.border }} title="Borders" />
-                    <span className="w-5 h-5 rounded-full border border-ink-black-900" style={{ backgroundColor: theme.primary }} title="Primary Color" />
-                    <span className="w-5 h-5 rounded-full border border-ink-black-900" style={{ backgroundColor: theme.success }} title="Success Color" />
+                    <span className="w-5 h-5 rounded-full border border-ink-black-900" style={{ backgroundColor: theme.bg }} title="Latar Belakang" />
+                    <span className="w-5 h-5 rounded-full border border-ink-black-900" style={{ backgroundColor: theme.border }} title="Warna Garis" />
+                    <span className="w-5 h-5 rounded-full border border-ink-black-900" style={{ backgroundColor: theme.primary }} title="Warna Utama" />
+                    <span className="w-5 h-5 rounded-full border border-ink-black-900" style={{ backgroundColor: theme.success }} title="Warna Sukses" />
                   </div>
                 </div>
               </div>

@@ -196,7 +196,7 @@ export default function DashboardView({
   };
 
   return (
-    <div className="min-h-screen flex flex-col md:flex-row bg-[#f7f9fa]">
+    <div className="min-h-screen flex flex-col md:flex-row bg-body-bg">
       {/* Sidebar Navigasi */}
       <aside 
         className={`w-full ${
@@ -207,9 +207,11 @@ export default function DashboardView({
           {/* Brand Header */}
           {isMinimized ? (
             <div className="flex flex-col items-center gap-4 pb-6 border-b-2 border-ink-black-800 mb-8">
-              <div className="w-10 h-10 bg-light-sea-green-400 rounded-[4px] border-2 border-ink-black-900 flex items-center justify-center text-ink-black-900 font-black text-xl shadow-[2px_2px_0px_0px_#011c32]">
-                TD
-              </div>
+              <img 
+                src="/dipintodo-logo.png" 
+                alt="Logo" 
+                className="w-10 h-10 object-contain rounded-[4px] border-2 border-ink-black-800 bg-ink-black-950 p-1 invert" 
+              />
               <button
                 onClick={() => setIsMinimized(false)}
                 className="p-1.5 bg-amber-glow-400 border-2 border-ink-black-900 rounded-[4px] text-ink-black-900 hover:bg-amber-glow-300 shadow-[2px_2px_0px_0px_#011c32] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all cursor-pointer"
@@ -221,15 +223,17 @@ export default function DashboardView({
           ) : (
             <div className="flex items-center justify-between gap-2 pb-6 border-b-2 border-ink-black-800 mb-8">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 bg-light-sea-green-400 rounded-[4px] border-2 border-ink-black-900 flex items-center justify-center text-ink-black-900 font-black text-xl shadow-[2px_2px_0px_0px_#011c32]">
-                  TD
-                </div>
+                <img 
+                  src="/dipintodo-logo.png" 
+                  alt="Logo" 
+                  className="w-10 h-10 object-contain rounded-[4px] border-2 border-ink-black-800 bg-ink-black-950 p-1 invert" 
+                />
                 <div>
                   <h2 className="text-lg font-black tracking-wide leading-none uppercase m-0 text-white">
-                    Task Manager
+                    DipInToDo
                   </h2>
                   <span className="text-[10px] uppercase font-bold text-light-sea-green-300 tracking-wider">
-                    Full-Stack Ready
+                    Productivity App
                   </span>
                 </div>
               </div>

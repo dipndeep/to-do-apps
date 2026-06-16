@@ -2,7 +2,7 @@
 export default function Card({
   children,
   className = '',
-  bg = 'bg-white',
+  bg = 'bg-card-bg',
   hoverEffect = false,
   ...props
 }) {

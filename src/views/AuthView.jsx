@@ -69,7 +69,7 @@ export default function AuthView({ onAuthSuccess, showToast }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 select-none relative overflow-hidden bg-white">
+    <div className="h-screen max-h-screen flex flex-col items-center justify-center p-4 select-none relative overflow-hidden bg-body-bg">
       {/* Abstract Background Grid/Pattern for Blueprint look (rotated and scaled for sketch look) */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(1,28,50,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(1,28,50,0.06)_1px,transparent_1px)] bg-size-[30px_30px] pointer-events-none z-0 rotate-[4deg] scale-[1.3]" />
 
@@ -90,28 +90,33 @@ export default function AuthView({ onAuthSuccess, showToast }) {
       <div className="absolute top-10 right-1/3 text-ink-black-900 opacity-20 font-mono text-xl select-none hidden md:block z-0">＋</div>
 
       {/* Main Title Badge */}
-      <div className="mb-8 -rotate-2 hover:rotate-0 transition-transform duration-200 relative z-10">
-        <div className="bg-ink-black-900 text-white px-6 py-3 border-[3px] border-ink-black-900 shadow-[6px_6px_0px_0px_#30cfbf] rounded-[4px] flex items-center gap-3">
-          <Sparkles className="w-6 h-6 text-amber-glow-400" />
-          <h1 className="text-2xl md:text-3xl font-black uppercase tracking-wider m-0">
-            Sistem Manajemen Tugas
+      <div className={`${isLogin ? 'mb-8' : 'mb-4'} -rotate-2 hover:rotate-0 transition-transform duration-200 relative z-10`}>
+        <div className="bg-ink-black-900 text-white px-5 py-2.5 border-[3px] border-ink-black-900 shadow-[6px_6px_0px_0px_#30cfbf] rounded-[4px] flex items-center gap-3">
+          <Sparkles className="w-5 h-5 text-amber-glow-400 animate-pulse" />
+          <h1 className="text-xl md:text-2xl font-black uppercase tracking-wider m-0">
+            Dive Into Productivity
           </h1>
+          <Sparkles className="w-5 h-5 text-amber-glow-400 animate-pulse" />
         </div>
-        <p className="text-center font-bold text-sm uppercase tracking-widest text-ink-black-900 mt-2 bg-amber-glow-100 border-2 border-ink-black-900 px-2 py-0.5 inline-block mx-auto rounded-xs">
-          ⚡ Created By DipNDeep ⚡
-        </p>
+        {isLogin && (
+          <p className="text-center font-bold text-sm uppercase tracking-widest text-ink-black-900 mt-2 bg-amber-glow-100 border-2 border-ink-black-900 px-2 py-0.5 inline-block mx-auto rounded-xs">
+            ⚡ Created By DipNDeep ⚡
+          </p>
+        )}
       </div>
 
       {/* Authentication Card */}
       <Card
-        className="w-full max-w-md border-[3px] border-ink-black-900 shadow-[8px_8px_0px_0px_#011c32] relative z-10"
+        className={`w-full max-w-md border-[3px] border-ink-black-900 shadow-[8px_8px_0px_0px_#011c32] relative z-10 transition-all ${
+          isLogin ? 'p-6' : 'p-4 sm:p-5'
+        }`}
         bg={isLogin ? 'bg-white' : 'bg-ink-black-50'}
       >
-        <div className="mb-6 text-center">
-          <CardTitle className="text-3xl uppercase tracking-wider font-extrabold">
+        <div className={`${isLogin ? 'mb-6' : 'mb-4'} text-center`}>
+          <CardTitle className={`${isLogin ? 'text-3xl' : 'text-xl sm:text-2xl'} uppercase tracking-wider font-extrabold`}>
             {isLogin ? 'MASUK AKUN' : 'DAFTAR BARU'}
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-xs">
             {isLogin 
               ? 'Silakan masuk untuk mengelola tugas harian Anda' 
               : 'Daftar sekarang untuk mendapatkan dashboard produktivitas gratis'
@@ -119,11 +124,11 @@ export default function AuthView({ onAuthSuccess, showToast }) {
           </CardDescription>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className={isLogin ? 'space-y-4' : 'space-y-2.5'}>
           {/* Name Field (Only for Register) */}
           {!isLogin && (
             <div>
-              <label className="block text-xs font-black uppercase tracking-wider mb-1.5 text-ink-black-900">
+              <label className="block text-[10px] font-black uppercase tracking-wider mb-1 text-ink-black-900">
                 Nama Lengkap
               </label>
               <input
@@ -131,12 +136,12 @@ export default function AuthView({ onAuthSuccess, showToast }) {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Masukkan nama lengkap Anda"
-                className={`w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 font-semibold bg-white focus:bg-light-sea-green-50 focus:outline-none transition-colors ${
+                className={`w-full px-3 py-1.5 border-[3px] rounded-[4px] border-ink-black-900 font-semibold bg-white focus:bg-light-sea-green-50 focus:outline-none transition-colors text-sm ${
                   errors.name ? 'border-punch-red-500 bg-punch-red-50' : 'border-ink-black-900'
                 }`}
               />
               {errors.name && (
-                <p className="text-punch-red-600 text-xs font-bold mt-1 uppercase tracking-wide">
+                <p className="text-punch-red-600 text-[10px] font-bold mt-0.5 uppercase tracking-wide">
                   ⚠️ {errors.name}
                 </p>
               )}
@@ -145,7 +150,7 @@ export default function AuthView({ onAuthSuccess, showToast }) {
 
           {/* Email Field */}
           <div>
-            <label className="block text-xs font-black uppercase tracking-wider mb-1.5 text-ink-black-900">
+            <label className="block text-[10px] font-black uppercase tracking-wider mb-1 text-ink-black-900">
               Alamat Email
             </label>
             <input
@@ -153,12 +158,12 @@ export default function AuthView({ onAuthSuccess, showToast }) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="nama@email.com"
-              className={`w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 font-semibold bg-white focus:bg-light-sea-green-50 focus:outline-none transition-colors ${
+              className={`w-full px-3 py-1.5 border-[3px] rounded-[4px] border-ink-black-900 font-semibold bg-white focus:bg-light-sea-green-50 focus:outline-none transition-colors text-sm ${
                 errors.email ? 'border-punch-red-500 bg-punch-red-50' : 'border-ink-black-900'
               }`}
             />
             {errors.email && (
-              <p className="text-punch-red-600 text-xs font-bold mt-1 uppercase tracking-wide">
+              <p className="text-punch-red-600 text-[10px] font-bold mt-0.5 uppercase tracking-wide">
                 ⚠️ {errors.email}
               </p>
             )}
@@ -166,7 +171,7 @@ export default function AuthView({ onAuthSuccess, showToast }) {
 
           {/* Password Field */}
           <div>
-            <label className="block text-xs font-black uppercase tracking-wider mb-1.5 text-ink-black-900">
+            <label className="block text-[10px] font-black uppercase tracking-wider mb-1 text-ink-black-900">
               Kata Sandi
             </label>
             <input
@@ -174,12 +179,12 @@ export default function AuthView({ onAuthSuccess, showToast }) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className={`w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 font-semibold bg-white focus:bg-light-sea-green-50 focus:outline-none transition-colors ${
+              className={`w-full px-3 py-1.5 border-[3px] rounded-[4px] border-ink-black-900 font-semibold bg-white focus:bg-light-sea-green-50 focus:outline-none transition-colors text-sm ${
                 errors.password ? 'border-punch-red-500 bg-punch-red-50' : 'border-ink-black-900'
               }`}
             />
             {errors.password && (
-              <p className="text-punch-red-600 text-xs font-bold mt-1 uppercase tracking-wide">
+              <p className="text-punch-red-600 text-[10px] font-bold mt-0.5 uppercase tracking-wide">
                 ⚠️ {errors.password}
               </p>
             )}
@@ -188,7 +193,7 @@ export default function AuthView({ onAuthSuccess, showToast }) {
           {/* Confirm Password (Only for Register) */}
           {!isLogin && (
             <div>
-              <label className="block text-xs font-black uppercase tracking-wider mb-1.5 text-ink-black-900">
+              <label className="block text-[10px] font-black uppercase tracking-wider mb-1 text-ink-black-900">
                 Konfirmasi Kata Sandi
               </label>
               <input
@@ -196,12 +201,12 @@ export default function AuthView({ onAuthSuccess, showToast }) {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="••••••••"
-                className={`w-full px-3 py-2 border-[3px] rounded-[4px] border-ink-black-900 font-semibold bg-white focus:bg-light-sea-green-50 focus:outline-none transition-colors ${
+                className={`w-full px-3 py-1.5 border-[3px] rounded-[4px] border-ink-black-900 font-semibold bg-white focus:bg-light-sea-green-50 focus:outline-none transition-colors text-sm ${
                   errors.confirmPassword ? 'border-punch-red-500 bg-punch-red-50' : 'border-ink-black-900'
                 }`}
               />
               {errors.confirmPassword && (
-                <p className="text-punch-red-600 text-xs font-bold mt-1 uppercase tracking-wide">
+                <p className="text-punch-red-600 text-[10px] font-bold mt-0.5 uppercase tracking-wide">
                   ⚠️ {errors.confirmPassword}
                 </p>
               )}
@@ -212,7 +217,7 @@ export default function AuthView({ onAuthSuccess, showToast }) {
           <Button
             type="submit"
             variant={isLogin ? 'primary' : 'success'}
-            className="w-full mt-6 py-3 text-base flex justify-center items-center"
+            className={`w-full py-2.5 text-base flex justify-center items-center ${isLogin ? 'mt-6' : 'mt-4'}`}
           >
             {isLogin ? (
               <>
@@ -227,7 +232,7 @@ export default function AuthView({ onAuthSuccess, showToast }) {
         </form>
 
         {/* Auth Toggle Link */}
-        <div className="mt-6 text-center border-t-2 border-ink-black-900 pt-4">
+        <div className={`text-center border-t-2 border-ink-black-900 ${isLogin ? 'mt-6 pt-4' : 'mt-4 pt-3'}`}>
           <p className="text-sm font-semibold">
             {isLogin ? 'Belum punya akun?' : 'Sudah terdaftar?'}
             <button

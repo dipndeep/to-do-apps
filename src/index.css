@@ -69,6 +69,9 @@
   --color-amber-glow-800: #663c00;
   --color-amber-glow-900: #331e00;
   --color-amber-glow-950: #241500;
+
+  --color-card-bg: #ffffff;
+  --color-body-bg: #f7f9fa;
 }
 
 /* Base style resets using CSS variable bounds */
@@ -117,94 +120,41 @@
   box-shadow: 0px 0px 0px 0px var(--color-ink-black-900);
 }
 
-/* Alternative Design Themes */
+/* Alternative Design Themes: Light & Dark Modes */
 
-/* 1. Solarized Retro Theme */
-.theme-solarized {
-  --color-body-bg: #fdf6e3;
-  --color-dot: rgba(101, 123, 131, 0.06);
-
-  --color-ink-black-950: #002b36;
-  --color-ink-black-900: #073642;
-  --color-ink-black-800: #586e75;
-  --color-ink-black-700: #657b83;
-  --color-ink-black-400: #839496;
-  --color-ink-black-100: #eee8d5;
-  --color-ink-black-50: #fdf6e3;
-
-  --color-light-sea-green-500: #268bd2; /* Solarized Blue */
-  --color-light-sea-green-400: #3ca2e0;
-  --color-light-sea-green-100: #e0f3ff;
-
-  --color-porcelain-500: #859900; /* Solarized Green */
-  --color-porcelain-400: #9cb300;
-  --color-porcelain-100: #f4ffd6;
-
-  --color-punch-red-500: #dc322f; /* Solarized Red */
-  --color-punch-red-400: #e84f4c;
-  --color-punch-red-100: #ffe9e9;
-
-  --color-amber-glow-500: #b58900; /* Solarized Yellow */
-  --color-amber-glow-400: #d6a100;
-  --color-amber-glow-100: #fff6da;
-}
-
-/* 2. Neon Cyberpunk Theme */
-.theme-cyber {
+/* Dark Mode Theme */
+.theme-dark {
   --color-body-bg: #09080f;
-  --color-dot: rgba(0, 240, 255, 0.1);
+  --color-dot: rgba(255, 255, 255, 0.05);
 
   --color-ink-black-950: #020204;
-  --color-ink-black-900: #ff007f; /* Cyber Pink replaces core borders */
-  --color-ink-black-800: #1b132a;
-  --color-ink-black-700: #00f0ff; /* Cyber Cyan for labels */
-  --color-ink-black-400: #ff007f;
-  --color-ink-black-100: #1b1030;
-  --color-ink-black-50: #100624;
+  --color-ink-black-900: #ffffff; /* White borders and main text */
+  --color-ink-black-800: #cbd5e1;
+  --color-ink-black-700: #94a3b8;
+  --color-ink-black-600: #475569;
+  --color-ink-black-500: #334155;
+  --color-ink-black-400: #1e293b;
+  --color-ink-black-100: #0f172a;
+  --color-ink-black-50: #0b0f19;
 
-  --color-light-sea-green-500: #00f0ff; /* Neon Cyan */
-  --color-light-sea-green-400: #5effff;
-  --color-light-sea-green-100: #0c1c2b;
+  --color-card-bg: #1e293b; /* Dark background inside cards */
 
-  --color-porcelain-500: #39ff14; /* Neon Lime Green */
-  --color-porcelain-400: #73ff5c;
-  --color-porcelain-100: #112911;
-
-  --color-punch-red-500: #ff3333; /* Neon Red */
-  --color-punch-red-400: #ff6666;
-  --color-punch-red-100: #3b0e0e;
-
-  --color-amber-glow-500: #ffe600; /* Neon Yellow */
-  --color-amber-glow-400: #fff066;
-  --color-amber-glow-100: #3b360a;
+  /* Dark mode variants for highlighted states */
+  --color-light-sea-green-100: #0a1f1e;
+  --color-light-sea-green-50: #061413;
+  --color-porcelain-100: #0c1a0c;
+  --color-porcelain-50: #081208;
+  --color-punch-red-100: #2b0b0e;
+  --color-punch-red-50: #1d070a;
+  --color-amber-glow-100: #2b210b;
+  --color-amber-glow-50: #1d1607;
 }
 
-/* 3. Grape Soda Theme */
-.theme-grape {
-  --color-body-bg: #f5efff;
-  --color-dot: rgba(155, 81, 224, 0.08);
+/* Dark Mode Overrides for hardcoded background utility classes */
+.theme-dark .bg-white {
+  background-color: var(--color-card-bg) !important;
+}
 
-  --color-ink-black-950: #0d041c;
-  --color-ink-black-900: #2b1055; /* Deep Purple */
-  --color-ink-black-800: #492882;
-  --color-ink-black-700: #673ab7;
-  --color-ink-black-400: #9c27b0;
-  --color-ink-black-100: #ebd6ff;
-  --color-ink-black-50: #f6e8ff;
-
-  --color-light-sea-green-500: #9b51e0; /* Lavender */
-  --color-light-sea-green-400: #bb6bd9;
-  --color-light-sea-green-100: #f9f0ff;
-
-  --color-porcelain-500: #7fff00; /* Grape neon Green */
-  --color-porcelain-400: #adff2f;
-  --color-porcelain-100: #f0fff0;
-
-  --color-punch-red-500: #ff2a6d; /* Grape Pink */
-  --color-punch-red-400: #ff6295;
-  --color-punch-red-100: #fff0f5;
-
-  --color-amber-glow-500: #f2a900; /* Grape Gold */
-  --color-amber-glow-400: #ffc72c;
-  --color-amber-glow-100: #fffbeb;
+.theme-dark .bg-\[\#eafaf9\] {
+  background-color: var(--color-light-sea-green-50) !important;
 }
