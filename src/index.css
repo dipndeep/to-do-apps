@@ -5,7 +5,7 @@
   --font-sans: 'Outfit', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-display: 'Outfit', system-ui, sans-serif;
 
-  /* Ink Black - Primary theme colors */
+  /* Default Ink Black - Primary theme colors */
   --color-ink-black-50: #e6f3fe;
   --color-ink-black-100: #cde8fe;
   --color-ink-black-200: #9cd1fc;
@@ -18,7 +18,7 @@
   --color-ink-black-900: #011c32;
   --color-ink-black-950: #011423;
 
-  /* Porcelain - Success Aksen Hijau */
+  /* Default Porcelain - Success Aksen Hijau */
   --color-porcelain-50: #eeffe5;
   --color-porcelain-100: #ddffcc;
   --color-porcelain-200: #bbff99;
@@ -31,7 +31,7 @@
   --color-porcelain-900: #113300;
   --color-porcelain-950: #0c2400;
 
-  /* Light Sea Green - Secondary Colors */
+  /* Default Light Sea Green - Secondary Colors */
   --color-light-sea-green-50: #eafaf9;
   --color-light-sea-green-100: #d6f5f2;
   --color-light-sea-green-200: #acece5;
@@ -44,7 +44,7 @@
   --color-light-sea-green-900: #0a2926;
   --color-light-sea-green-950: #071d1b;
 
-  /* Punch Red - Danger / Overdue */
+  /* Default Punch Red - Danger / Overdue */
   --color-punch-red-50: #fde8ea;
   --color-punch-red-100: #fad1d6;
   --color-punch-red-200: #f5a3ac;
@@ -57,7 +57,7 @@
   --color-punch-red-900: #2e050a;
   --color-punch-red-950: #200307;
 
-  /* Amber Glow - Warnings / Priority */
+  /* Default Amber Glow - Warnings / Priority */
   --color-amber-glow-50: #fff4e5;
   --color-amber-glow-100: #ffeacc;
   --color-amber-glow-200: #ffd599;
@@ -71,13 +71,15 @@
   --color-amber-glow-950: #241500;
 }
 
+/* Base style resets using CSS variable bounds */
 @layer base {
   body {
-    background-color: #f7f9fa;
-    color: #011c32;
+    background-color: var(--color-body-bg, #f7f9fa);
+    color: var(--color-ink-black-900);
     font-family: var(--font-sans);
-    background-image: radial-gradient(rgba(1, 28, 50, 0.05) 1px, transparent 1px);
+    background-image: radial-gradient(var(--color-dot, rgba(1, 28, 50, 0.05)) 1px, transparent 1px);
     background-size: 24px 24px;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   /* Custom scrollbar matching Neobrutalism theme */
@@ -87,24 +89,24 @@
   }
   ::-webkit-scrollbar-track {
     background: #f1f1f1;
-    border: 3px solid #011c32;
+    border: 3px solid var(--color-ink-black-900);
   }
   ::-webkit-scrollbar-thumb {
-    background: #30cfbf;
-    border: 3px solid #011c32;
+    background: var(--color-light-sea-green-500);
+    border: 3px solid var(--color-ink-black-900);
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #27a599;
+    background: var(--color-light-sea-green-600);
   }
 }
 
-/* Custom Neobrutalist classes */
+/* Custom Neobrutalist classes using theme variables */
 .neobrutal-border {
-  border: 3px solid #011c32;
+  border: 3px solid var(--color-ink-black-900);
 }
 
 .neobrutal-shadow {
-  box-shadow: 4px 4px 0px 0px #011c32;
+  box-shadow: 4px 4px 0px 0px var(--color-ink-black-900);
 }
 
 .neobrutal-button-active {
@@ -112,5 +114,97 @@
 }
 .neobrutal-button-active:active {
   transform: translate(4px, 4px);
-  box-shadow: 0px 0px 0px 0px #011c32;
+  box-shadow: 0px 0px 0px 0px var(--color-ink-black-900);
+}
+
+/* Alternative Design Themes */
+
+/* 1. Solarized Retro Theme */
+.theme-solarized {
+  --color-body-bg: #fdf6e3;
+  --color-dot: rgba(101, 123, 131, 0.06);
+
+  --color-ink-black-950: #002b36;
+  --color-ink-black-900: #073642;
+  --color-ink-black-800: #586e75;
+  --color-ink-black-700: #657b83;
+  --color-ink-black-400: #839496;
+  --color-ink-black-100: #eee8d5;
+  --color-ink-black-50: #fdf6e3;
+
+  --color-light-sea-green-500: #268bd2; /* Solarized Blue */
+  --color-light-sea-green-400: #3ca2e0;
+  --color-light-sea-green-100: #e0f3ff;
+
+  --color-porcelain-500: #859900; /* Solarized Green */
+  --color-porcelain-400: #9cb300;
+  --color-porcelain-100: #f4ffd6;
+
+  --color-punch-red-500: #dc322f; /* Solarized Red */
+  --color-punch-red-400: #e84f4c;
+  --color-punch-red-100: #ffe9e9;
+
+  --color-amber-glow-500: #b58900; /* Solarized Yellow */
+  --color-amber-glow-400: #d6a100;
+  --color-amber-glow-100: #fff6da;
+}
+
+/* 2. Neon Cyberpunk Theme */
+.theme-cyber {
+  --color-body-bg: #09080f;
+  --color-dot: rgba(0, 240, 255, 0.1);
+
+  --color-ink-black-950: #020204;
+  --color-ink-black-900: #ff007f; /* Cyber Pink replaces core borders */
+  --color-ink-black-800: #1b132a;
+  --color-ink-black-700: #00f0ff; /* Cyber Cyan for labels */
+  --color-ink-black-400: #ff007f;
+  --color-ink-black-100: #1b1030;
+  --color-ink-black-50: #100624;
+
+  --color-light-sea-green-500: #00f0ff; /* Neon Cyan */
+  --color-light-sea-green-400: #5effff;
+  --color-light-sea-green-100: #0c1c2b;
+
+  --color-porcelain-500: #39ff14; /* Neon Lime Green */
+  --color-porcelain-400: #73ff5c;
+  --color-porcelain-100: #112911;
+
+  --color-punch-red-500: #ff3333; /* Neon Red */
+  --color-punch-red-400: #ff6666;
+  --color-punch-red-100: #3b0e0e;
+
+  --color-amber-glow-500: #ffe600; /* Neon Yellow */
+  --color-amber-glow-400: #fff066;
+  --color-amber-glow-100: #3b360a;
+}
+
+/* 3. Grape Soda Theme */
+.theme-grape {
+  --color-body-bg: #f5efff;
+  --color-dot: rgba(155, 81, 224, 0.08);
+
+  --color-ink-black-950: #0d041c;
+  --color-ink-black-900: #2b1055; /* Deep Purple */
+  --color-ink-black-800: #492882;
+  --color-ink-black-700: #673ab7;
+  --color-ink-black-400: #9c27b0;
+  --color-ink-black-100: #ebd6ff;
+  --color-ink-black-50: #f6e8ff;
+
+  --color-light-sea-green-500: #9b51e0; /* Lavender */
+  --color-light-sea-green-400: #bb6bd9;
+  --color-light-sea-green-100: #f9f0ff;
+
+  --color-porcelain-500: #7fff00; /* Grape neon Green */
+  --color-porcelain-400: #adff2f;
+  --color-porcelain-100: #f0fff0;
+
+  --color-punch-red-500: #ff2a6d; /* Grape Pink */
+  --color-punch-red-400: #ff6295;
+  --color-punch-red-100: #fff0f5;
+
+  --color-amber-glow-500: #f2a900; /* Grape Gold */
+  --color-amber-glow-400: #ffc72c;
+  --color-amber-glow-100: #fffbeb;
 }

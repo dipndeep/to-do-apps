@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { LogIn, UserPlus, ShieldAlert, Sparkles } from 'lucide-react';
+import { useState } from 'react';
+import { LogIn, UserPlus, Sparkles } from 'lucide-react';
 import Button from '../components/Button';
 import Card, { CardTitle, CardDescription } from '../components/Card';
 import { mockDb } from '../utils/mockDb';

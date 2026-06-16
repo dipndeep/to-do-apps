@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import Button from './Button';
 import Card, { CardTitle } from './Card';
+import { mockDb } from '../utils/mockDb';
 
 export default function TaskModal({
   isOpen,
   onClose,
   onSubmit,
+  userId,
   task = null, // If editing, task object is passed
 }) {
   const [title, setTitle] = useState('');
@@ -14,23 +16,42 @@ export default function TaskModal({
   const [priority, setPriority] = useState('SEDANG');
   const [status, setStatus] = useState('BELUM_SELESAI');
   const [dueDate, setDueDate] = useState('');
+  const [categoryId, setCategoryId] = useState('');
+  const [categories, setCategories] = useState([]);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    if (task) {
-      setTitle(task.title || '');
-      setDescription(task.description || '');
-      setPriority(task.priority || 'SEDANG');
-      setStatus(task.status || 'BELUM_SELESAI');
-      setDueDate(task.dueDate || '');
-    } else {
-      setTitle('');
-      setDescription('');
-      setPriority('SEDANG');
-      setStatus('BELUM_SELESAI');
-      setDueDate('');
+    if (isOpen && userId) {
+      try {
+        const cats = mockDb.getCategories(userId);
+        Promise.resolve().then(() => {
+          setCategories(cats);
+        });
+      } catch (err) {
+        console.error('Gagal mengambil kategori:', err);
+      }
     }
-    setErrors({});
+  }, [isOpen, userId]);
+
+  useEffect(() => {
+    Promise.resolve().then(() => {
+      if (task) {
+        setTitle(task.title || '');
+        setDescription(task.description || '');
+        setPriority(task.priority || 'SEDANG');
+        setStatus(task.status || 'BELUM_SELESAI');
+        setDueDate(task.dueDate || '');
+        setCategoryId(task.categoryId || '');
+      } else {
+        setTitle('');
+        setDescription('');
+        setPriority('SEDANG');
+        setStatus('BELUM_SELESAI');
+        setDueDate('');
+        setCategoryId('');
+      }
+      setErrors({});
+    });
   }, [task, isOpen]);
 
   if (!isOpen) return null;
@@ -57,6 +78,7 @@ export default function TaskModal({
       priority,
       status,
       dueDate: dueDate || null,
+      categoryId: categoryId || null,
     });
   };
 
@@ -121,8 +143,8 @@ export default function TaskModal({
             />
           </div>
 
-          {/* Grid fields for Priority, Status, Due Date */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Grid fields for Priority, Category, Due Date */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {/* Priority */}
             <div>
               <label className="block text-sm font-bold uppercase tracking-wide mb-2">
@@ -131,7 +153,7 @@ export default function TaskModal({
               <select
                 value={priority}
                 onChange={(e) => setPriority(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-[4px] border-[3px] border-ink-black-900 bg-white font-bold focus:bg-light-sea-green-50 focus:outline-none transition-colors uppercase cursor-pointer"
+                className="w-full px-3 py-2.5 rounded-[4px] border-[3px] border-ink-black-900 bg-white font-bold focus:bg-light-sea-green-50 focus:outline-none transition-colors uppercase cursor-pointer text-xs"
               >
                 <option value="RENDAH">🟢 Rendah</option>
                 <option value="SEDANG">🟡 Sedang</option>
@@ -139,16 +161,35 @@ export default function TaskModal({
               </select>
             </div>
 
+            {/* Category select */}
+            <div>
+              <label className="block text-sm font-bold uppercase tracking-wide mb-2">
+                Kategori
+              </label>
+              <select
+                value={categoryId}
+                onChange={(e) => setCategoryId(e.target.value)}
+                className="w-full px-3 py-2.5 rounded-[4px] border-[3px] border-ink-black-900 bg-white font-bold focus:bg-light-sea-green-50 focus:outline-none transition-colors uppercase cursor-pointer text-xs"
+              >
+                <option value="">Tanpa Kategori</option>
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.id}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
             {/* Due Date */}
             <div>
               <label className="block text-sm font-bold uppercase tracking-wide mb-2">
-                Tanggal Jatuh Tempo
+                Jatuh Tempo
               </label>
               <input
                 type="date"
                 value={dueDate}
                 onChange={(e) => setDueDate(e.target.value)}
-                className="w-full px-3 py-2.5 rounded-[4px] border-[3px] border-ink-black-900 bg-white font-bold focus:bg-light-sea-green-50 focus:outline-none transition-colors cursor-pointer"
+                className="w-full px-3 py-2.5 rounded-[4px] border-[3px] border-ink-black-900 bg-white font-bold focus:bg-light-sea-green-50 focus:outline-none transition-colors cursor-pointer text-xs"
               />
             </div>
           </div>
