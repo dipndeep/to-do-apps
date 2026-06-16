@@ -69,13 +69,28 @@ export default function AuthView({ onAuthSuccess, showToast }) {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center p-4 select-none relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center p-4 select-none relative overflow-hidden bg-white">
+      {/* Abstract Background Grid/Pattern for Blueprint look (rotated and scaled for sketch look) */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(1,28,50,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(1,28,50,0.06)_1px,transparent_1px)] bg-size-[30px_30px] pointer-events-none z-0 rotate-[4deg] scale-[1.3]" />
+
       {/* Decorative floating shapes for Neobrutalism wow-factor */}
-      <div className="absolute top-10 left-10 w-24 h-24 bg-porcelain-300 neobrutal-border -rotate-12 hidden md:block" />
-      <div className="absolute bottom-10 right-10 w-32 h-32 bg-amber-glow-300 neobrutal-border rounded-full rotate-45 hidden md:block" />
+      {/* Top Left Shape */}
+      <div className="absolute top-12 left-12 w-28 h-28 bg-porcelain-300 border-[3px] border-ink-black-900 shadow-[6px_6px_0px_0px_#011c32] -rotate-12 hidden lg:block z-0" />
+      {/* Bottom Right Shape */}
+      <div className="absolute bottom-12 right-12 w-36 h-36 bg-amber-glow-300 border-[3px] border-ink-black-900 shadow-[8px_8px_0px_0px_#011c32] rounded-full rotate-45 hidden lg:block z-0" />
+      {/* Top Right Shape */}
+      <div className="absolute top-24 right-16 w-24 h-12 bg-light-sea-green-300 border-[3px] border-ink-black-900 shadow-[6px_6px_0px_0px_#011c32] rounded-full rotate-12 hidden lg:block z-0" />
+      {/* Bottom Left Shape */}
+      <div className="absolute bottom-20 left-16 w-20 h-20 bg-punch-red-300 border-[3px] border-ink-black-900 shadow-[6px_6px_0px_0px_#011c32] rotate-45 hidden lg:block z-0" />
+
+      {/* Retro Crosses / Doodles */}
+      <div className="absolute top-1/4 left-1/4 text-ink-black-900 opacity-20 font-mono text-xl select-none hidden md:block z-0">＋</div>
+      <div className="absolute top-2/3 right-1/4 text-ink-black-900 opacity-20 font-mono text-xl select-none hidden md:block z-0">＋</div>
+      <div className="absolute bottom-1/4 left-1/3 text-ink-black-900 opacity-20 font-mono text-xl select-none hidden md:block z-0">＋</div>
+      <div className="absolute top-10 right-1/3 text-ink-black-900 opacity-20 font-mono text-xl select-none hidden md:block z-0">＋</div>
 
       {/* Main Title Badge */}
-      <div className="mb-8 -rotate-2 hover:rotate-0 transition-transform duration-200">
+      <div className="mb-8 -rotate-2 hover:rotate-0 transition-transform duration-200 relative z-10">
         <div className="bg-ink-black-900 text-white px-6 py-3 border-[3px] border-ink-black-900 shadow-[6px_6px_0px_0px_#30cfbf] rounded-[4px] flex items-center gap-3">
           <Sparkles className="w-6 h-6 text-amber-glow-400" />
           <h1 className="text-2xl md:text-3xl font-black uppercase tracking-wider m-0">
@@ -83,13 +98,13 @@ export default function AuthView({ onAuthSuccess, showToast }) {
           </h1>
         </div>
         <p className="text-center font-bold text-sm uppercase tracking-widest text-ink-black-900 mt-2 bg-amber-glow-100 border-2 border-ink-black-900 px-2 py-0.5 inline-block mx-auto rounded-xs">
-          ⚡ Neobrutalist Edition ⚡
+          ⚡ Created By DipNDeep ⚡
         </p>
       </div>
 
       {/* Authentication Card */}
       <Card
-        className="w-full max-w-md border-[3px] border-ink-black-900 shadow-[8px_8px_0px_0px_#011c32]"
+        className="w-full max-w-md border-[3px] border-ink-black-900 shadow-[8px_8px_0px_0px_#011c32] relative z-10"
         bg={isLogin ? 'bg-white' : 'bg-ink-black-50'}
       >
         <div className="mb-6 text-center">
