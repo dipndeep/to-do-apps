@@ -107,7 +107,11 @@ export default function AuthView({ onAuthSuccess, showToast }) {
 
       {/* Authentication Card */}
       <Card
+<<<<<<< HEAD
         className={`w-full max-w-md border-[3px] border-ink-black-900 shadow-[8px_8px_0px_0px_var(--color-ink-black-900)] relative z-10 transition-all ${
+=======
+        className={`w-full max-w-md border-[3px] border-ink-black-900 shadow-[8px_8px_0px_0px_#011c32] relative z-10 transition-all ${
+>>>>>>> b8e7fe69582c19b0b12bb69e49f06af54eb10f7f
           isLogin ? 'p-6' : 'p-4 sm:p-5'
         }`}
         bg={isLogin ? 'bg-white' : 'bg-ink-black-50'}

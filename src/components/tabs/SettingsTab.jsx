@@ -29,8 +29,13 @@ export default function SettingsTab({
     {
       id: 'dark',
       name: '🌙 Mode Gelap (Dark)',
+<<<<<<< HEAD
       bg: '#011423',
       border: '#010d18',
+=======
+      bg: '#09080f',
+      border: '#ffffff',
+>>>>>>> b8e7fe69582c19b0b12bb69e49f06af54eb10f7f
       primary: '#30cfbf',
       success: '#55ff00',
     },

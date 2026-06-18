@@ -132,6 +132,7 @@
 
 /* Dark Mode Theme */
 .theme-dark {
+<<<<<<< HEAD
   --color-body-bg: #011423; /* Matching the sidebar background in light mode */
   --color-dot: rgba(255, 255, 255, 0.04);
 
@@ -223,6 +224,34 @@
   background: var(--color-light-sea-green-600) !important;
 }
 
+=======
+  --color-body-bg: #09080f;
+  --color-dot: rgba(255, 255, 255, 0.05);
+
+  --color-ink-black-950: #020204;
+  --color-ink-black-900: #ffffff; /* White borders and main text */
+  --color-ink-black-800: #cbd5e1;
+  --color-ink-black-700: #94a3b8;
+  --color-ink-black-600: #475569;
+  --color-ink-black-500: #334155;
+  --color-ink-black-400: #1e293b;
+  --color-ink-black-100: #0f172a;
+  --color-ink-black-50: #0b0f19;
+
+  --color-card-bg: #1e293b; /* Dark background inside cards */
+
+  /* Dark mode variants for highlighted states */
+  --color-light-sea-green-100: #0a1f1e;
+  --color-light-sea-green-50: #061413;
+  --color-porcelain-100: #0c1a0c;
+  --color-porcelain-50: #081208;
+  --color-punch-red-100: #2b0b0e;
+  --color-punch-red-50: #1d070a;
+  --color-amber-glow-100: #2b210b;
+  --color-amber-glow-50: #1d1607;
+}
+
+>>>>>>> b8e7fe69582c19b0b12bb69e49f06af54eb10f7f
 /* Dark Mode Overrides for hardcoded background utility classes */
 .theme-dark .bg-white {
   background-color: var(--color-card-bg) !important;
