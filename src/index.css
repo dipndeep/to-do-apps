@@ -132,62 +132,30 @@
 
 /* Dark Mode Theme */
 .theme-dark {
-<<<<<<< HEAD
-  --color-body-bg: #011423; /* Matching the sidebar background in light mode */
-  --color-dot: rgba(255, 255, 255, 0.04);
+  --color-body-bg: #09080f;
+  --color-dot: rgba(255, 255, 255, 0.05);
 
-  /* Deepest navy/black for borders and shadows */
-  --color-ink-black-900: #010d18; 
-  --color-ink-black-950: #00070c;
+  --color-ink-black-950: #020204;
+  --color-ink-black-900: #ffffff; /* White borders and main text */
+  --color-ink-black-800: #cbd5e1;
+  --color-ink-black-700: #94a3b8;
+  --color-ink-black-600: #475569;
+  --color-ink-black-500: #334155;
+  --color-ink-black-400: #1e293b;
+  --color-ink-black-100: #0f172a;
+  --color-ink-black-50: #0b0f19;
 
-  /* Ink shades for dark backgrounds */
-  --color-ink-black-50: #122436;
-  --color-ink-black-100: #1a344d;
-  --color-ink-black-200: #224464;
-  --color-ink-black-300: #2d5880;
-  --color-ink-black-400: #396d9c;
-  --color-ink-black-500: #4b85bd;
-  --color-ink-black-600: #689cd1;
-  --color-ink-black-700: #8db6e5;
-  --color-ink-black-800: #b3d4fa;
-
-  --color-card-bg: #0f2235; /* Premium slate navy for cards */
+  --color-card-bg: #1e293b; /* Dark background inside cards */
 
   /* Dark mode variants for highlighted states */
-  --color-light-sea-green-100: #0f302d;
-  --color-light-sea-green-50: #09201e;
-  --color-porcelain-100: #162f16;
-  --color-porcelain-50: #0e200e;
-  --color-punch-red-100: #3a1518;
-  --color-punch-red-50: #270e10;
-  --color-amber-glow-100: #3a2b13;
-  --color-amber-glow-50: #271d0d;
-}
-
-/* Override text colors in Dark Mode to ensure high legibility */
-.theme-dark .text-ink-black-950,
-.theme-dark .text-ink-black-900 {
-  color: #ffffff !important;
-}
-
-.theme-dark .text-ink-black-800,
-.theme-dark .text-ink-black-700 {
-  color: #cbd5e1 !important; /* slate-300 */
-}
-
-.theme-dark .text-ink-black-600,
-.theme-dark .text-ink-black-500 {
-  color: #94a3b8 !important; /* slate-400 */
-}
-
-.theme-dark .text-ink-black-400,
-.theme-dark .text-ink-black-300 {
-  color: #64748b !important; /* slate-500 */
-}
-
-.theme-dark .text-ink-black-200,
-.theme-dark .text-ink-black-100 {
-  color: #475569 !important; /* slate-600 */
+  --color-light-sea-green-100: #0a1f1e;
+  --color-light-sea-green-50: #061413;
+  --color-porcelain-100: #0c1a0c;
+  --color-porcelain-50: #081208;
+  --color-punch-red-100: #2b0b0e;
+  --color-punch-red-50: #1d070a;
+  --color-amber-glow-100: #2b210b;
+  --color-amber-glow-50: #1d1607;
 }
 
 /* Input Form Controls Overrides for Dark Mode */
@@ -224,34 +192,6 @@
   background: var(--color-light-sea-green-600) !important;
 }
 
-=======
-  --color-body-bg: #09080f;
-  --color-dot: rgba(255, 255, 255, 0.05);
-
-  --color-ink-black-950: #020204;
-  --color-ink-black-900: #ffffff; /* White borders and main text */
-  --color-ink-black-800: #cbd5e1;
-  --color-ink-black-700: #94a3b8;
-  --color-ink-black-600: #475569;
-  --color-ink-black-500: #334155;
-  --color-ink-black-400: #1e293b;
-  --color-ink-black-100: #0f172a;
-  --color-ink-black-50: #0b0f19;
-
-  --color-card-bg: #1e293b; /* Dark background inside cards */
-
-  /* Dark mode variants for highlighted states */
-  --color-light-sea-green-100: #0a1f1e;
-  --color-light-sea-green-50: #061413;
-  --color-porcelain-100: #0c1a0c;
-  --color-porcelain-50: #081208;
-  --color-punch-red-100: #2b0b0e;
-  --color-punch-red-50: #1d070a;
-  --color-amber-glow-100: #2b210b;
-  --color-amber-glow-50: #1d1607;
-}
-
->>>>>>> b8e7fe69582c19b0b12bb69e49f06af54eb10f7f
 /* Dark Mode Overrides for hardcoded background utility classes */
 .theme-dark .bg-white {
   background-color: var(--color-card-bg) !important;
